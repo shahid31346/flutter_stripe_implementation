@@ -116,10 +116,13 @@ class _HomeScreenState extends State<HomeScreen> {
       //Make post request to Stripe
       var response = await http.post(
         Uri.parse('https://api.stripe.com/v1/payment_intents'),
+        //create .env file in assets folder and add this line with your own secret_key from stripe dashboard
+        // /STRIPE_SECRET = sk_test_51K0LYWA2mVzgGzxxxxxxxxx
         headers: {
           'Authorization': 'Bearer ${dotenv.env['STRIPE_SECRET']}',
           'Content-Type': 'application/x-www-form-urlencoded'
         },
+
         body: body,
       );
       return json.decode(response.body);
